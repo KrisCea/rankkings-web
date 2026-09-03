@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - RankKings</title>
+
+    <!-- Tailwind CSS via CDN + Configuración de colores -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-dark': '#4B167A',
+                        'brand-purple': '#8E44AD',
+                        'brand-gold': '#F2C14E',
+                        'brand-cream': '#FFF1C9',
+                        'brand-charcoal': '#2C2A33',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-brand-cream text-brand-charcoal min-h-screen flex flex-col font-sans">
+
+    <!-- Navbar -->
+    <header class="bg-brand-dark text-brand-cream px-6 py-3 flex justify-between items-center gap-4">
+        <div class="flex items-center gap-4">
+            <button class="flex items-center gap-1 hover:text-brand-gold text-sm">
+                <span>☰</span> Menu
+            </button>
+            <a href="index.html" class="flex items-center gap-2 font-bold text-brand-gold">
+                <span class="border-2 border-brand-gold px-1.5 py-0.5 rounded text-xs">LOGO</span>
+                <span>LOGORANKKINGS</span>
+            </a>
+            <nav class="hidden md:flex gap-4 text-sm">
+                <a href="#" class="hover:text-brand-gold">Género</a>
+                <a href="#" class="hover:text-brand-gold">Eventos</a>
+                <a href="#" class="hover:text-brand-gold">Para Ti...</a>
+            </nav>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <div class="flex bg-white rounded-md overflow-hidden text-brand-charcoal">
+                <input type="text" placeholder="Buscar..." class="px-3 py-1 text-sm outline-none w-32 md:w-48">
+                <button type="button" class="px-2 text-gray-600 hover:text-black">🔍</button>
+            </div>
+            <button
+                class="bg-brand-purple text-brand-cream text-xs px-3 py-2 rounded-md hover:opacity-90">Filtro</button>
+        </div>
+
+        <div class="flex items-center gap-3 text-sm">
+            <a href="login.html" class="font-bold text-brand-gold">Iniciar Sesión</a>
+            <a href="register.html" class="hover:text-brand-gold">Registrarse</a>
+        </div>
+    </header>
+
+    <!-- Formulario Login -->
+    <main class="flex-1 flex justify-center items-center p-6">
+        <div
+            class="bg-white border-2 border-brand-charcoal rounded-xl w-full max-w-md p-8 text-center shadow-[4px_4px_0px_#2C2A33]">
+            <h2 class="text-2xl font-bold text-brand-dark mb-6">Bienvenido a RankKings</h2>
+
+            <form id="login-form" class="space-y-4">
+                <!-- Campo: Usuario -->
+                <div
+                    class="flex items-center border-2 border-brand-charcoal rounded-lg px-3 py-2 bg-white focus-within:ring-2 focus-within:ring-brand-purple">
+                    <span class="mr-2">👤</span>
+                    <input type="text" id="login-user" placeholder="Correo Electrónico o Usuario"
+                        class="w-full text-sm outline-none" required>
+                </div>
+
+                <!-- Campo: Contraseña -->
+                <div
+                    class="flex items-center border-2 border-brand-charcoal rounded-lg px-3 py-2 bg-white focus-within:ring-2 focus-within:ring-brand-purple">
+                    <span class="mr-2">🔒</span>
+                    <input type="password" id="login-password" placeholder="Contraseña"
+                        class="w-full text-sm outline-none" required>
+                    <button type="button" id="toggle-pwd" class="text-sm">👁️</button>
+                </div>
+
+                <button type="submit"
+                    class="w-full py-2.5 bg-brand-gold text-brand-charcoal font-bold border-2 border-brand-charcoal rounded-lg hover:bg-yellow-400 transition-colors">
+                    Iniciar Sesión
+                </button>
+
+                <div class="text-right">
+                    <a href="#" class="text-xs text-brand-charcoal hover:underline">¿Olvidé mi contraseña?</a>
+                </div>
+
+                <!-- Divisor -->
+                <div class="relative flex py-2 items-center">
+                    <div class="flex-grow border-t border-brand-charcoal"></div>
+                    <span class="flex-shrink mx-3 text-xs text-gray-500">o inicia sesión con</span>
+                    <div class="flex-grow border-t border-brand-charcoal"></div>
+                </div>
+
+                <!-- Botones Sociales -->
+                <div class="flex justify-center gap-4">
+                    <button type="button"
+                        class="w-10 h-10 border-2 border-brand-charcoal rounded-lg bg-white font-bold flex items-center justify-center hover:bg-gray-100">G</button>
+                    <button type="button"
+                        class="w-10 h-10 border-2 border-brand-charcoal rounded-lg bg-white font-bold flex items-center justify-center hover:bg-gray-100">f</button>
+                    <button type="button"
+                        class="w-10 h-10 border-2 border-brand-charcoal rounded-lg bg-white font-bold flex items-center justify-center hover:bg-gray-100">🍎</button>
+                </div>
+
+                <p class="text-sm pt-2">
+                    ¿No tienes una cuenta? <a href="registro.html"
+                        class="text-brand-purple font-bold hover:underline">Registrarse</a>
+                </p>
+            </form>
+        </div>
+    </main>
+
+    <!-- Botón Chat Flotante -->
+    <button
+        class="fixed bottom-14 right-6 w-12 h-12 rounded-full border-2 border-brand-charcoal bg-white flex items-center justify-center text-xl shadow-[2px_2px_0px_#2C2A33] hover:bg-gray-50">
+        💬
+    </button>
+
+    <!-- Footer -->
+    <footer
+        class="bg-brand-dark text-brand-cream px-6 py-4 flex flex-col md:flex-row justify-between items-center text-xs gap-2">
+        <div class="flex gap-4">
+            <a href="#" class="hover:text-brand-gold">Contacto</a>
+            <a href="#" class="hover:text-brand-gold">Términos y Condiciones</a>
+            <a href="#" class="hover:text-brand-gold">Políticas de Privacidad</a>
+        </div>
+        <span>© RankKings 2024</span>
+    </footer>
+
+    <script src="js/global.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+
+</html>

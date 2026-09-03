@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crear Cuenta - RankKings</title>
+  
+  <!-- Tailwind CSS via CDN + Configuración de paleta -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'brand-dark': '#4B167A',
+            'brand-purple': '#8E44AD',
+            'brand-gold': '#F2C14E',
+            'brand-cream': '#FFF1C9',
+            'brand-charcoal': '#2C2A33',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-brand-cream text-brand-charcoal min-h-screen flex flex-col font-sans">
+
+  <!-- Navbar Global -->
+  <header class="bg-brand-dark text-brand-cream px-6 py-3 flex justify-between items-center gap-4">
+    <div class="flex items-center gap-4">
+      <button class="flex items-center gap-1 hover:text-brand-gold text-sm">
+        <span>☰</span> Menu
+      </button>
+      <a href="index.html" class="flex items-center gap-2 font-bold text-brand-gold">
+        <span class="border-2 border-brand-gold px-1.5 py-0.5 rounded text-xs">LOGO</span>
+        <span>LOGORANKKINGS</span>
+      </a>
+      <nav class="hidden md:flex gap-4 text-sm">
+        <a href="#" class="hover:text-brand-gold">Género</a>
+        <a href="#" class="hover:text-brand-gold">Eventos</a>
+        <a href="#" class="hover:text-brand-gold">Para Ti...</a>
+      </nav>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <div class="flex bg-white rounded-md overflow-hidden text-brand-charcoal">
+        <input type="text" placeholder="Buscar..." class="px-3 py-1 text-sm outline-none w-32 md:w-48">
+        <button type="button" class="px-2 text-gray-600 hover:text-black">🔍</button>
+      </div>
+      <button class="bg-brand-purple text-brand-cream text-xs px-3 py-2 rounded-md hover:opacity-90">Filtro</button>
+    </div>
+
+    <div class="flex items-center gap-3 text-sm">
+      <a href="login.html" class="hover:text-brand-gold">Iniciar Sesión</a>
+      <a href="register.html" class="font-bold text-brand-gold">Registrarse</a>
+    </div>
+  </header>
+
+  <!-- Formulario Registro -->
+  <main class="flex-1 flex justify-center items-center p-6 my-4">
+    <div class="bg-white border-2 border-brand-charcoal rounded-xl w-full max-w-md p-8 text-center shadow-[4px_4px_0px_#2C2A33]">
+      <h2 class="text-2xl font-bold text-brand-dark mb-6">Crear una Cuenta en RankKings</h2>
+
+      <form id="register-form" class="space-y-3.5">
+        <!-- Campo: Nombre Completo -->
+        <div class="flex items-center border-2 border-brand-charcoal rounded-lg px-3 py-2 bg-white focus-within:ring-2 focus-within:ring-brand-purple">
+          <span class="mr-2">👤</span>
+          <input type="text" id="reg-fullname" placeholder="Nombre Completo" class="w-full text-sm outline-none" required>
+        </div>
+
+        <!-- Campo: Nombre de Usuario -->
+        <div class="flex items-center border-2 border-brand-charcoal rounded-lg px-3 py-2 bg-white focus-within:ring-2 focus-within:ring-brand-purple">
+          <span class="mr-2">👤</span>
+          <input type="text" id="reg-username" placeholder="Nombre de Usuario" class="w-full text-sm outline-none" required>
+        </div>
+
+        <!-- Campo: Correo Electrónico -->
+        <div class="flex items-center border-2 border-brand-charcoal rounded-lg px-3 py-2 bg-white focus-within:ring-2 focus-within:ring-brand-purple">
+          <span class="mr-2">✉️</span>
+          <input type="email" id="reg-email" placeholder="Correo Electrónico" class="w-full text-sm outline-none" required>
+        </div>
+
+        <!-- Campo: Contraseña -->
+        <div class="flex items-center border-2 border-brand-charcoal rounded-lg px-3 py-2 bg-white focus-within:ring-2 focus-within:ring-brand-purple">
+          <span class="mr-2">🔒</span>
+          <input type="password" id="reg-password" placeholder="Contraseña" class="w-full text-sm outline-none" required>
+          <button type="button" class="toggle-pwd text-sm">👁️</button>
+        </div>
+
+        <!-- Campo: Confirmar Contraseña -->
+        <div class="flex items-center border-2 border-brand-charcoal rounded-lg px-3 py-2 bg-white focus-within:ring-2 focus-within:ring-brand-purple">
+          <span class="mr-2">🔒</span>
+          <input type="password" id="reg-confirm-password" placeholder="Confirmar Contraseña" class="w-full text-sm outline-none" required>
+          <button type="button" class="toggle-pwd text-sm">👁️</button>
+        </div>
+
+        <!-- Simulación de reCAPTCHA -->
+        <div class="flex items-center justify-between border-2 border-brand-charcoal rounded-lg p-3 bg-gray-50 text-xs">
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" id="captcha-check" class="w-4 h-4 rounded border-brand-charcoal" required>
+            <span>No soy un robot</span>
+          </label>
+          <span class="text-[10px] text-gray-500 font-bold">reCAPTCHA</span>
+        </div>
+
+        <!-- Aceptación de Términos -->
+        <div class="flex items-start gap-2 text-left pt-1">
+          <input type="checkbox" id="terms-check" class="mt-1 w-4 h-4 rounded border-brand-charcoal" required>
+          <label for="terms-check" class="text-xs text-brand-charcoal leading-tight">
+            Acepto los <a href="#" class="underline font-semibold">Términos y Condiciones</a> y las <a href="#" class="underline font-semibold">Políticas de Privacidad</a>
+          </label>
+        </div>
+
+        <button type="submit" class="w-full py-2.5 bg-brand-gold text-brand-charcoal font-bold border-2 border-brand-charcoal rounded-full hover:bg-yellow-400 transition-colors mt-2">
+          Crear Cuenta
+        </button>
+
+        <!-- Divisor -->
+        <div class="relative flex py-1 items-center">
+          <div class="flex-grow border-t border-brand-charcoal"></div>
+          <span class="flex-shrink mx-3 text-xs text-gray-500">o regístrate con</span>
+          <div class="flex-grow border-t border-brand-charcoal"></div>
+        </div>
+
+        <!-- Botones Sociales -->
+        <div class="flex justify-center gap-4">
+          <button type="button" class="w-10 h-10 border-2 border-brand-charcoal rounded-lg bg-white font-bold flex items-center justify-center hover:bg-gray-100">G</button>
+          <button type="button" class="w-10 h-10 border-2 border-brand-charcoal rounded-lg bg-white font-bold flex items-center justify-center hover:bg-gray-100">f</button>
+          <button type="button" class="w-10 h-10 border-2 border-brand-charcoal rounded-lg bg-white font-bold flex items-center justify-center hover:bg-gray-100">🍎</button>
+        </div>
+
+        <p class="text-sm pt-1">
+          ¿Ya tienes una cuenta? <a href="login.html" class="text-brand-purple font-bold hover:underline">Iniciar Sesión</a>
+        </p>
+      </form>
+    </div>
+  </main>
+
+  <!-- Botón Chat Flotante -->
+  <button class="fixed bottom-14 right-6 w-12 h-12 rounded-full border-2 border-brand-charcoal bg-white flex items-center justify-center text-xl shadow-[2px_2px_0px_#2C2A33] hover:bg-gray-50">
+    💬
+  </button>
+
+  <!-- Footer Global -->
+  <footer class="bg-brand-dark text-brand-cream px-6 py-4 flex flex-col md:flex-row justify-between items-center text-xs gap-2">
+    <div class="flex gap-4">
+      <a href="#" class="hover:text-brand-gold">Contacto</a>
+      <a href="#" class="hover:text-brand-gold">Términos y Condiciones</a>
+      <a href="#" class="hover:text-brand-gold">Políticas de Privacidad</a>
+    </div>
+    <span>© RankKings 2024</span>
+  </footer>
+
+  <script src="js/global.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>
