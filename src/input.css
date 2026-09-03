@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+@theme {
+  /* Nomenclatura sugerida para RankKings */
+  --color-rk-dark: #2C2A33;
+  --color-rk-primary: #4B167A;
+  --color-rk-secondary: #8E44AD;
+  --color-rk-accent: #F2C14E;
+  --color-rk-light: #FFF1C9;
+}
