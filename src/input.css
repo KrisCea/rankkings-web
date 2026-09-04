@@ -1,10 +1,250 @@
 @import "tailwindcss";
+@source "./main.js";
+@source "./modules";
+@source inline("w-3 h-3 rounded-full transition-colors duration-300 focus:outline-none bg-white bg-white/50");
 
+/* Tokens de marca compartidos por todos los componentes. */
 @theme {
-  /* Nomenclatura sugerida para RankKings */
   --color-rk-dark: #2C2A33;
   --color-rk-primary: #4B167A;
   --color-rk-secondary: #8E44AD;
   --color-rk-accent: #F2C14E;
   --color-rk-light: #FFF1C9;
 }
+
+/* Variables de tema: los componentes consumen estos valores, no colores duplicados. */
+:root {
+  --rk-page-bg: #17161b;
+  --rk-page-text: #fff1c9;
+  --rk-chrome-bg: #2c2a33;
+  --rk-chrome-text: #fff1c9;
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  --rk-page-bg: #fffaf0;
+  --rk-page-text: #2c2a33;
+  --rk-chrome-bg: #f2c14e;
+  --rk-chrome-text: #2c2a33;
+  color-scheme: light;
+}
+
+.theme-page {
+  background-color: var(--rk-page-bg);
+  color: var(--rk-page-text);
+  transition: background-color 200ms ease, color 200ms ease;
+}
+
+/* Componentes de la barra superior y sus menús. */
+.theme-chrome {
+  background-color: var(--rk-chrome-bg);
+}
+
+.theme-chrome-text {
+  color: var(--rk-chrome-text);
+}
+
+.theme-toggle:hover {
+  background-color: color-mix(in srgb, currentColor 15%, transparent);
+}
+
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0.55rem;
+}
+
+.icon-button:hover,
+.nav-link:hover {
+  color: var(--color-rk-accent);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 0.7rem);
+  z-index: 30;
+  min-width: 11rem;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--rk-chrome-text) 15%, transparent);
+  border-radius: 0.75rem;
+  background-color: var(--rk-page-bg);
+  color: var(--rk-page-text);
+  padding: 0.4rem;
+  box-shadow: 0 1rem 2rem rgb(0 0 0 / 20%);
+}
+
+.menu-link,
+.filter-option {
+  display: block;
+  width: 100%;
+  padding: 0.65rem 0.8rem;
+  border-radius: 0.5rem;
+  color: inherit;
+  font-size: 0.9rem;
+}
+
+.menu-link:hover,
+.filter-option:hover {
+  background-color: color-mix(in srgb, var(--color-rk-accent) 24%, transparent);
+}
+
+.menu-label {
+  padding: 0.45rem 0.8rem;
+  color: color-mix(in srgb, currentColor 60%, transparent);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  background-color: color-mix(in srgb, var(--rk-chrome-text) 12%, transparent);
+  padding: 0.65rem 0.9rem;
+}
+
+.search-box input {
+  min-width: 0;
+  width: 100%;
+  background: transparent;
+  color: inherit;
+  outline: none;
+}
+
+.search-box input::placeholder {
+  color: currentColor;
+  opacity: 0.65;
+}
+
+.create-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border-radius: 999px;
+  background-color: var(--color-rk-accent);
+  color: #2c2a33;
+  padding: 0.6rem 0.9rem;
+  font-weight: 700;
+}
+
+.create-button span {
+  font-size: 1.35rem;
+  line-height: 0.8;
+}
+
+/* Controles y presentación del slider principal. */
+.slider-control {
+  position: absolute;
+  top: 50%;
+  z-index: 20;
+  display: flex;
+  transform: translateY(-50%);
+  border-radius: 999px;
+  background-color: rgb(44 42 51 / 75%);
+  padding: 0.65rem;
+  color: #fff1c9;
+  opacity: 0;
+  transition: opacity 180ms ease, background-color 180ms ease;
+}
+
+.group:hover .slider-control,
+.slider-control:focus-visible {
+  opacity: 1;
+}
+
+.slider-control:hover {
+  background-color: #2c2a33;
+}
+
+/* Selector y tarjetas de las vistas Reels, Galería y Posteos. */
+.content-tab {
+  border-radius: 999px;
+  padding: 0.55rem 1rem;
+  color: var(--rk-page-text);
+  font-size: 0.9rem;
+  font-weight: 700;
+  opacity: 0.65;
+}
+
+.content-tab.is-active {
+  background-color: var(--color-rk-accent);
+  color: #2c2a33;
+  opacity: 1;
+}
+
+.content-card,
+.post-card {
+  border-radius: 1rem;
+  color: #fff1c9;
+  padding: 1.25rem;
+  box-shadow: 0 0.75rem 1.5rem rgb(0 0 0 / 10%);
+}
+
+.content-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.content-card h3 {
+  margin-top: 0.5rem;
+  font-size: 1.35rem;
+  font-weight: 800;
+}
+
+.content-card p {
+  margin-top: 0.45rem;
+  opacity: 0.8;
+}
+
+.content-kicker {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.gallery-tile {
+  display: flex;
+  min-height: 8rem;
+  align-items: flex-end;
+  border-radius: 0.85rem;
+  color: #fff1c9;
+  padding: 1rem;
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.post-card {
+  background-color: color-mix(in srgb, var(--rk-page-text) 8%, transparent);
+  color: var(--rk-page-text);
+}
+
+.avatar-placeholder {
+  display: grid;
+  height: 2.25rem;
+  width: 2.25rem;
+  place-items: center;
+  border-radius: 999px;
+  background-color: var(--color-rk-secondary);
+  color: #fff1c9;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+:root[data-theme="light"] .theme-icon-sun,
+:root:not([data-theme="light"]) .theme-icon-moon {
+  display: none;
+}
+
+/* El icono de luna parte con `hidden` para evitar parpadeos y se muestra solo en claro. */
+:root[data-theme="light"] .theme-icon-moon {
+  display: block;
+}
+

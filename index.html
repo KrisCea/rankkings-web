@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="RankKings: descubre, comparte y organiza tus rankings de música, libros y películas.">
+    <title>RankKings</title>
+    <link href="./dist/output.css?v=2" rel="stylesheet">
+    <!-- Punto de entrada: importa los módulos de la aplicación. -->
+    <script src="./src/main.js" type="module"></script>
+    
+</head>
+<body class="theme-page">
+
+    <!-- Componente: navegación global de la aplicación. -->
+    <header class="theme-chrome theme-chrome-text border-b border-black/10 px-4 py-3" data-component="global-header">
+        <nav class="mx-auto flex max-w-7xl flex-wrap items-center gap-3" aria-label="Navegación principal">
+            <!-- Menú de secciones principales. -->
+            <div class="relative order-1">
+                <button id="sectionMenuButton" type="button" class="icon-button" aria-expanded="false" aria-controls="sectionMenu" aria-label="Seleccionar sección" title="Secciones">
+                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
+                <div id="sectionMenu" class="dropdown-menu hidden left-0" role="menu">
+                    <a href="#para-ti" class="menu-link lg:hidden">Para ti</a>
+                    <a href="#musica" class="menu-link">Música</a>
+                    <a href="#libros" class="menu-link">Libros</a>
+                    <a href="#peliculas" class="menu-link">Películas</a>
+                    <a href="#Videojuegos" class="menu-link lg:hidden">Videojuegos</a>
+                    <a href="#eventos" class="menu-link lg:hidden">Eventos</a>
+                </div>
+            </div>
+
+            <a href="#inicio" class="order-2 text-xl font-black tracking-wide text-rk-accent">RANKKINGS</a>
+
+            <!-- Enlaces secundarios, visibles en escritorio. -->
+            <div class="order-3 hidden items-center gap-5 lg:flex">
+                <a href="#generos" class="nav-link">Géneros</a>
+                <a href="#eventos" class="nav-link">Eventos</a>
+                <a href="#para-ti" class="nav-link">Para ti</a>
+            </div>
+
+            <!-- Búsqueda y filtros. -->
+            <div class="order-5 flex min-w-0 flex-1 items-center gap-2 lg:order-4 lg:max-w-md" data-component="search-tools">
+                <label class="search-box min-w-0 flex-1">
+                    <svg class="h-4 w-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m21 21-4.35-4.35m2.35-5.65a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z"/></svg>
+                    <input id="searchInput" type="search" placeholder="Buscar" aria-label="Buscar en RankKings" />
+                </label>
+                <div class="relative">
+                    <button id="filterButton" type="button" class="icon-button" aria-expanded="false" aria-controls="filterMenu" aria-label="Filtrar resultados" title="Filtros">
+                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7h16M7 12h10m-7 5h4"/></svg>
+                    </button>
+                    <div id="filterMenu" class="dropdown-menu right-0 hidden" role="menu">
+                        <p class="menu-label">Filtrar por</p>
+                        <button class="filter-option" data-filter="Tendencias">Tendencias</button>
+                        <button class="filter-option" data-filter="Más recientes">Más recientes</button>
+                        <button class="filter-option" data-filter="Mejor valorados">Mejor valorados</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Acciones de creación. -->
+            <div class="relative order-6" data-component="create-menu">
+                <button id="createButton" type="button" class="create-button" aria-expanded="false" aria-controls="createMenu"><span aria-hidden="true">+</span> Crear</button>
+                <div id="createMenu" class="dropdown-menu right-0 hidden" role="menu">
+                    <a href="#crear-post" class="menu-link">Post</a>
+                    <a href="#crear-live" class="menu-link">En vivo</a>
+                    <a href="#crear-lista" class="menu-link">Lista</a>
+                    <a href="#crear-resena" class="menu-link">Reseña</a>
+                </div>
+            </div>
+
+            <!-- Menú de cuenta y perfil. -->
+            <div class="relative order-7" data-component="profile-menu">
+                <button id="profileButton" type="button" class="flex items-center gap-2 rounded-full focus:outline-none" aria-expanded="false" aria-controls="profileMenu" aria-label="Abrir menú de perfil">
+                    <img class="h-9 w-9 rounded-full object-cover ring-2 ring-rk-accent" src="https://i.pravatar.cc/80?img=12" alt="Foto de usuario" />
+                    <svg class="hidden h-4 w-4 sm:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m6 9 6 6 6-6"/></svg>
+                </button>
+                <div id="profileMenu" class="dropdown-menu right-0 hidden" role="menu">
+                    <p class="menu-label">Tu cuenta</p>
+                    <a href="#sesion" class="menu-link">Iniciar sesión</a>
+                    <a href="#biblioteca" class="menu-link">Biblioteca</a>
+                    <a href="#amigos" class="menu-link">Amigos</a>
+                    <a href="#membresia" class="menu-link">Membresía</a>
+                    <button class="menu-link text-left" type="button">Cerrar sesión</button>
+                </div>
+            </div>
+
+            <button id="themeToggle" type="button" class="theme-toggle order-8 rounded-full p-2 focus:outline-none" aria-label="Cambiar a tema claro" title="Cambiar tema">
+                <svg class="theme-icon-sun h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" stroke-width="2"/><path stroke-linecap="round" stroke-width="2" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+                <svg class="theme-icon-moon hidden h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Componente: contenido principal con espacios publicitarios extensibles. -->
+    <main id="inicio" class="w-full px-4 py-8">
+        <div class="mx-auto grid w-full max-w-7xl grid-cols-1 items-start justify-center gap-6 lg:grid-cols-[180px_minmax(0,672px)_180px]">
+            <aside id="left-ad" aria-label="Espacio publicitario izquierdo" data-ad-slot="left" class="hidden min-h-60 rounded-lg border border-dashed border-rk-secondary/50 lg:block"></aside>
+
+            <div class="min-w-0 w-full max-w-2xl justify-self-center" data-component="content-feed">
+                <!-- Componente slider: cada enlace representa una diapositiva independiente. -->
+                <div class="relative aspect-square w-full overflow-hidden rounded-2xl shadow-2xl group">
+                    <div id="slider-track" class="flex h-full transition-transform duration-500 ease-in-out" style="transform: translateX(0%);" data-component="slider-track">
+                        <!-- Las diapositivas pueden duplicarse manteniendo este contrato: enlace, imagen y overlay. -->
+                        <a href="https://en.wikipedia.org/wiki/Operation:_Doomsday" target="_blank" rel="noopener noreferrer" class="block w-full flex-none relative" style="flex: 0 0 100%;" data-content-id="operation-doomsday">
+                            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/03/MF-DOOM-Operation.jpeg/250px-MF-DOOM-Operation.jpeg?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail" alt="Portada de Operation: Doomsday" class="absolute inset-0 h-full w-full object-cover" fetchpriority="high" decoding="async" />
+                            <div class="absolute inset-0 z-10 flex items-end bg-rk-dark/45 p-6"><div><p class="mb-1 text-sm font-semibold uppercase tracking-widest text-rk-accent">Música destacada</p><h2 class="relative z-20 text-3xl font-bold text-rk-light sm:text-4xl">Operation: Doomsday</h2></div></div>
+                        </a>
+                        <a href="https://en.wikipedia.org/wiki/Mm..Food" target="_blank" rel="noopener noreferrer" class="block w-full flex-none relative" style="flex: 0 0 100%;" data-content-id="mm-food">
+                            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/8a/Mmfood.jpg/250px-Mmfood.jpg?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail" alt="Portada de Mm..Food" class="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+                            <div class="absolute inset-0 z-10 flex items-end bg-rk-dark/45 p-6"><div><p class="mb-1 text-sm font-semibold uppercase tracking-widest text-rk-accent">Álbum para descubrir</p><h2 class="relative z-20 text-3xl font-bold text-rk-light sm:text-4xl">Mm..Food</h2></div></div>
+                        </a>
+                        <a href="https://en.wikipedia.org/wiki/Madvillainy" target="_blank" rel="noopener noreferrer" class="block w-full flex-none relative" style="flex: 0 0 100%;" data-content-id="madvillainy">
+                            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/5e/Madvillainy_cover.png/250px-Madvillainy_cover.png?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail" alt="Portada de Madvillainy" class="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+                            <div class="absolute inset-0 z-10 flex items-end bg-rk-dark/45 p-6"><div><p class="mb-1 text-sm font-semibold uppercase tracking-widest text-rk-accent">Clásico de culto</p><h2 class="relative z-20 text-3xl font-bold text-rk-light sm:text-4xl">Madvillainy</h2></div></div>
+                        </a>
+                    </div>
+                    <button id="prev-btn" aria-label="Post anterior" class="slider-control left-4"><svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m15 19-7-7 7-7"/></svg></button>
+                    <button id="next-btn" aria-label="Post siguiente" class="slider-control right-4"><svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 5 7 7-7 7"/></svg></button>
+                    <!-- El módulo slider inyecta aquí un indicador por diapositiva. -->
+                    <div id="pagination" class="absolute bottom-5 left-1/2 z-10 flex -translate-x-1/2 space-x-3" aria-label="Paginación del slider"></div>
+                </div>
+
+                <!-- Componente tabs: controla cuál de las vistas inferiores está activa. -->
+                <div class="mt-6 flex items-center justify-center gap-2 rounded-xl border border-rk-secondary/20 bg-black/5 p-2" role="tablist" aria-label="Vista del contenido">
+                    <button class="content-tab is-active" type="button" role="tab" aria-selected="true" data-mode="reels">Reels</button>
+                    <button class="content-tab" type="button" role="tab" aria-selected="false" data-mode="gallery">Galería</button>
+                    <button class="content-tab" type="button" role="tab" aria-selected="false" data-mode="posts">Posteos</button>
+                </div>
+
+                <!-- Vista Reels: tarjetas verticales pensadas para consumo rápido. -->
+                <section id="reels-view" class="content-view mt-5 grid gap-4 sm:grid-cols-2" data-view="reels" aria-label="Vista Reels">
+                    <article class="content-card aspect-9/12 bg-linear-to-br from-rk-primary to-rk-secondary"><span class="content-kicker">Reel 01</span><h3>El sonido que define una época</h3><p>Una selección rápida para descubrir.</p></article>
+                    <article class="content-card aspect-9/12 bg-linear-to-br from-rk-dark to-rk-primary"><span class="content-kicker">Reel 02</span><h3>3 minutos, una nueva obsesión</h3><p>Reproduce, guarda y comparte.</p></article>
+                </section>
+                <!-- Vista Galería: colección visual organizada en cuadrícula. -->
+                <section id="gallery-view" class="content-view mt-5 hidden grid-cols-2 gap-3 sm:grid-cols-3" data-view="gallery" aria-label="Vista Galería">
+                    <article class="gallery-tile bg-rk-accent">Música</article><article class="gallery-tile bg-rk-secondary">Libros</article><article class="gallery-tile bg-rk-primary">Películas</article><article class="gallery-tile bg-rk-dark">Listas</article><article class="gallery-tile bg-rk-accent">Eventos</article><article class="gallery-tile bg-rk-secondary">Favoritos</article>
+                </section>
+                <!-- Vista Posteos: publicaciones en formato cronológico. -->
+                <section id="posts-view" class="content-view mt-5 hidden space-y-4" data-view="posts" aria-label="Vista Posteos">
+                    <article class="post-card"><div class="flex items-center gap-3"><div class="avatar-placeholder">RK</div><div><h3 class="font-bold">RankKings Editorial</h3><p class="text-sm opacity-70">Hace 12 min</p></div></div><p class="mt-4 text-lg">¿Cuál es el disco que siempre vuelve a tu ranking?</p><div class="mt-4 flex gap-5 text-sm opacity-70"><span>♡ 248</span><span>◌ 32 comentarios</span></div></article>
+                    <article class="post-card"><div class="flex items-center gap-3"><div class="avatar-placeholder bg-rk-accent text-rk-dark">JD</div><div><h3 class="font-bold">Julián D.</h3><p class="text-sm opacity-70">Hace 38 min</p></div></div><p class="mt-4 text-lg">Mi lista para una tarde de películas lentas y grandes bandas sonoras.</p><div class="mt-4 flex gap-5 text-sm opacity-70"><span>♡ 96</span><span>◌ 14 comentarios</span></div></article>
+                </section>
+            </div>
+
+            <aside id="right-ad" aria-label="Espacio publicitario derecho" data-ad-slot="right" class="hidden min-h-60 rounded-lg border border-dashed border-rk-secondary/50 lg:block"></aside>
+        </div>
+    </main>
+    
+
+
+    <!-- Componente: pie global. -->
+    <footer class="theme-chrome theme-chrome-text p-4 text-center">
+        <p>&copy; 2024 RankKings. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
