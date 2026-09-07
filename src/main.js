@@ -130,3 +130,90 @@ document.addEventListener("keydown", (e) => {
     closeMobileSearch();
   }
 });
+
+
+const slides = document.querySelectorAll(".carousel-slide");
+const dots = document.querySelectorAll(".carousel-dot");
+const prevBtn = document.getElementById("prev-btn");
+const nextBtn = document.getElementById("next-btn");
+
+let current = 0;
+
+function render() {
+  slides.forEach((slide, i) => {
+    slide.classList.toggle("hidden", i !== current);
+  });
+
+  dots.forEach((dot, i) => {
+    dot.classList.toggle("bg-neutral-800", i === current);
+    dot.classList.toggle("bg-neutral-300", i !== current);
+  });
+}
+
+function goTo(index) {
+  current = (index + slides.length) % slides.length;
+  render();
+}
+
+prevBtn.addEventListener("click", () => goTo(current - 1));
+nextBtn.addEventListener("click", () => goTo(current + 1));
+
+dots.forEach((dot, i) => {
+  dot.addEventListener("click", () => goTo(i));
+});
+
+render();
+
+// Biblioteca de publicaciones: cada objeto es una publicación.
+const publicaciones = [
+  { titulo: "Top 10 discos de 2025", imagen: "https://f4.bcbits.com/img/a2625942251_16.jpg", url: "publicacion.html?id=1" },
+  { titulo: "Mejores libros del año", imagen: "https://i.scdn.co/image/ab67616d0000e1a36225f9b8bd5c9044281a2f17", url: "publicacion.html?id=2" },
+  { titulo: "Películas imprescindibles", url: "publicacion.html?id=3" }, // sin imagen
+  { titulo: "Ranking de series", imagen: "url-que-no-existe.jpg", url: "publicacion.html?id=4" }, // imagen rota
+  { titulo: "Top 10 discos de 2025", imagen: "https://f4.bcbits.com/img/a2625942251_16.jpg", url: "publicacion.html?id=1" },
+  { titulo: "Mejores libros del año", imagen: "https://i.scdn.co/image/ab67616d0000e1a36225f9b8bd5c9044281a2f17", url: "publicacion.html?id=2" },
+  { titulo: "Películas imprescindibles", url: "publicacion.html?id=3" }, // sin imagen
+  { titulo: "Ranking de series", imagen: "url-que-no-existe.jpg", url: "publicacion.html?id=4" }, // imagen rota
+  { titulo: "Top 10 discos de 2025", imagen: "https://f4.bcbits.com/img/a2625942251_16.jpg", url: "publicacion.html?id=1" },
+  { titulo: "Mejores libros del año", imagen: "https://i.scdn.co/image/ab67616d0000e1a36225f9b8bd5c9044281a2f17", url: "publicacion.html?id=2" },
+];
+
+function crearCuadroPublicacion(pub) {
+  const link = document.createElement("a");
+  link.href = pub.url;
+  link.className =
+    "relative flex aspect-square items-center justify-center overflow-hidden rounded-md border border-rk-light bg-rk-dark p-1 text-center";
+
+  // Texto del título: siempre existe, así el cuadrado nunca queda vacío
+  const label = document.createElement("span");
+  label.textContent = pub.titulo;
+  label.className = "relative z-10 text-xs font-medium text-rk-light";
+
+  if (pub.imagen) {
+    const img = document.createElement("img");
+    img.src = pub.imagen;
+    img.alt = pub.titulo;
+    img.className = "absolute inset-0 h-full w-full object-cover";
+
+    // Si la imagen no carga, se elimina y el texto queda centrado igual
+    img.addEventListener("error", () => img.remove());
+
+    link.appendChild(img);
+
+    // Con imagen, el título va como etiqueta superpuesta abajo
+    label.className =
+      "absolute inset-x-0 bottom-0 z-10 bg-rk-dark/70 px-2 py-1.5 text-xs text-rk-light";
+  }
+
+  link.appendChild(label);
+  return link;
+}
+
+function renderPublicaciones() {
+  const grid = document.getElementById("publicaciones-grid");
+  publicaciones.forEach((pub) => {
+    grid.appendChild(crearCuadroPublicacion(pub));
+  });
+}
+
+renderPublicaciones();
