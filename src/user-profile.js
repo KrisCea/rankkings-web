@@ -131,39 +131,6 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
-
-const slides = document.querySelectorAll(".carousel-slide");
-const dots = document.querySelectorAll(".carousel-dot");
-const prevBtn = document.getElementById("prev-btn");
-const nextBtn = document.getElementById("next-btn");
-
-let current = 0;
-
-function render() {
-  slides.forEach((slide, i) => {
-    slide.classList.toggle("hidden", i !== current);
-  });
-
-  dots.forEach((dot, i) => {
-    dot.classList.toggle("bg-neutral-800", i === current);
-    dot.classList.toggle("bg-neutral-300", i !== current);
-  });
-}
-
-function goTo(index) {
-  current = (index + slides.length) % slides.length;
-  render();
-}
-
-prevBtn.addEventListener("click", () => goTo(current - 1));
-nextBtn.addEventListener("click", () => goTo(current + 1));
-
-dots.forEach((dot, i) => {
-  dot.addEventListener("click", () => goTo(i));
-});
-
-render();
-
 // Biblioteca de publicaciones: cada objeto es una publicación.
 const publicaciones = [
   { titulo: "Top 10 discos de 2025", imagen: "https://f4.bcbits.com/img/a2625942251_16.jpg", url: "publicacion.html?id=1" },

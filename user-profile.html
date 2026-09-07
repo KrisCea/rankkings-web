@@ -6,7 +6,7 @@
     <meta name="description" content="RankKings: descubre, comparte y organiza tus rankings de música, libros y películas.">
     <title>RankKings</title>
     <link href="./dist/output.css" rel="stylesheet">
-    <script src="./src/main.js" type="module"></script>
+    <script src="./src/user-profile.js" type="module"></script>
     
 </head>
 
@@ -166,53 +166,8 @@
 
 
     <main id="inicio" class="w-full px-4 py-8">
-        <div class="mx-auto w-full max-w-3xl bg-rk-dark border border-rk-light rounded-md overflow-hidden">
-            <!-- Rectángulo del carrusel: cada slide es una imagen ya escrita en el HTML -->
-            <div class="relative w-full aspect-video bg-rk-light">
         
-            <!-- Slide 1 -->
-                <div class="carousel-slide absolute inset-0">
-                    <img src="https://f4.bcbits.com/img/a2625942251_16.jpg"
-                        alt="Imagen 1" class="w-full h-full object-cover" />
-                </div>
-            
-                <!-- Slide 2 -->
-                <div class="carousel-slide hidden absolute inset-0">
-                    <img src="https://i.scdn.co/image/ab67616d0000e1a36225f9b8bd5c9044281a2f17"
-                        alt="Imagen 2" class="w-full h-full object-cover" />
-                </div>
-            
-                <!-- Slide 3 -->
-                <div class="carousel-slide hidden absolute inset-0">
-                    <img src="https://upload.wikimedia.org/wikipedia/en/e/eb/Luv%28Sic%29_Hexalogy.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original"
-                        alt="Imagen 3" class="w-full h-full object-cover" />
-                </div>
         
-                <!-- Flecha izquierda -->
-                <button id="prev-btn" aria-label="Anterior"
-                    class="absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 flex items-center justify-center rounded-full bg-white/80 hover:bg-white text-neutral-700">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </button>
-        
-                <!-- Flecha derecha -->
-                <button id="next-btn" aria-label="Siguiente"
-                    class="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 flex items-center justify-center rounded-full bg-white/80 hover:bg-white text-neutral-700">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M9 18l6-6-6-6" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </button>
-            </div>
-        
-            <!-- Indicadores -->
-            <div class="flex items-center justify-center gap-1.5 py-4">
-                <button class="carousel-dot w-1.5 h-1.5 rounded-full bg-neutral-800" data-index="0" aria-label="Ir a la diapositiva 1"></button>
-                <button class="carousel-dot w-1.5 h-1.5 rounded-full bg-neutral-300 hover:bg-neutral-400" data-index="1" aria-label="Ir a la diapositiva 2"></button>
-                <button class="carousel-dot w-1.5 h-1.5 rounded-full bg-neutral-300 hover:bg-neutral-400" data-index="2" aria-label="Ir a la diapositiva 3"></button>
-            </div>
-        
-        </div>
 
         <!-- Biblioteca de publicaciones: cuadrícula simple de cuadrados clickeables -->
         <section class="mt-10 mx-auto w-full max-w-3xl">
