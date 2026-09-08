@@ -130,3 +130,19 @@ document.addEventListener("keydown", (e) => {
     closeMobileSearch();
   }
 });
+
+// Validación simple: confirma que las contraseñas coincidan antes de enviar.
+        const signupForm = document.getElementById("signup-form");
+        const password = document.getElementById("password");
+        const passwordConfirm = document.getElementById("password-confirm");
+        const mismatchMsg = document.getElementById("password-mismatch");
+ 
+        signupForm.addEventListener("submit", (e) => {
+            if (password.value !== passwordConfirm.value) {
+                e.preventDefault();
+                mismatchMsg.classList.remove("hidden");
+                passwordConfirm.focus();
+            } else {
+                mismatchMsg.classList.add("hidden");
+            }
+        });
