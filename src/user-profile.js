@@ -178,9 +178,48 @@ function crearCuadroPublicacion(pub) {
 
 function renderPublicaciones() {
   const grid = document.getElementById("publicaciones-grid");
+  if (!grid) return; // esta página podría no tener la cuadrícula (p. ej. si se reutiliza el script en otra vista)
   publicaciones.forEach((pub) => {
     grid.appendChild(crearCuadroPublicacion(pub));
   });
 }
 
 renderPublicaciones();
+
+// Pestañas del perfil (Publicaciones / Listas / Guardado)
+const profileTabs = [
+  { btn: "tab-btn-publicaciones", panel: "tab-panel-publicaciones" },
+  { btn: "tab-btn-listas", panel: "tab-panel-listas" },
+  { btn: "tab-btn-guardado", panel: "tab-panel-guardado" },
+];
+
+function activarPestana(idBotonActivo) {
+  profileTabs.forEach(({ btn, panel }) => {
+    const btnEl = document.getElementById(btn);
+    const panelEl = document.getElementById(panel);
+    if (!btnEl || !panelEl) return;
+
+    const activo = btn === idBotonActivo;
+    panelEl.classList.toggle("hidden", !activo);
+    btnEl.setAttribute("aria-selected", String(activo));
+    btnEl.classList.toggle("border-rk-accent", activo);
+    btnEl.classList.toggle("text-rk-accent", activo);
+    btnEl.classList.toggle("border-transparent", !activo);
+    btnEl.classList.toggle("text-rk-light/70", !activo);
+  });
+}
+
+profileTabs.forEach(({ btn }) => {
+  const btnEl = document.getElementById(btn);
+  if (btnEl) {
+    btnEl.addEventListener("click", () => activarPestana(btn));
+  }
+});
+
+// Botón "Editar perfil": placeholder, listo para enlazar a la vista de edición
+const editProfileBtn = document.getElementById("edit-profile-btn");
+if (editProfileBtn) {
+  editProfileBtn.addEventListener("click", () => {
+    window.location.href = "editar-perfil.html";
+  });
+}

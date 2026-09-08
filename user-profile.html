@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="RankKings: descubre, comparte y organiza tus rankings de música, libros y películas.">
-    <title>RankKings</title>
+    <title>RankKings — Perfil</title>
     <link href="./dist/output.css" rel="stylesheet">
     <script src="./src/user-profile.js" type="module"></script>
     
@@ -165,19 +165,100 @@
     </header>
 
 
-    <main id="inicio" class="w-full px-4 py-8">
-        
-        
+    <main id="inicio" class="w-full">
 
-        <!-- Biblioteca de publicaciones: cuadrícula simple de cuadrados clickeables -->
-        <section class="mt-10 mx-auto w-full max-w-3xl">
-            <h2 class="mb-4 text-base font-medium text-rk-light">Publicaciones</h2>
+        <!-- Portada -->
+        <div class="h-32 w-full bg-gradient-to-r from-rk-accent/40 to-rk-dark sm:h-44"></div>
 
+        <!-- Cabecera de perfil -->
+        <section class="mx-auto -mt-12 w-full max-w-3xl px-4 sm:-mt-14">
+            <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+                <div class="flex flex-col items-start gap-3 sm:flex-row sm:items-end">
+                    <img
+                        id="profile-avatar"
+                        src="https://definicion.de/wp-content/uploads/2019/07/perfil-de-usuario.png"
+                        alt="Foto de perfil"
+                        class="h-24 w-24 shrink-0 rounded-full border-4 border-rk-dark object-cover sm:h-28 sm:w-28"
+                    />
+                    <div class="pb-1">
+                        <h2 id="profile-name" class="text-xl font-semibold text-rk-light">Usuario</h2>
+                        <p id="profile-username" class="text-sm text-rk-light/70">@usuario</p>
+                    </div>
+                </div>
+
+                <div class="flex shrink-0 gap-2">
+                    <button id="edit-profile-btn" class="rounded-full border border-rk-light px-4 py-1.5 text-sm font-medium text-rk-light transition-colors hover:border-rk-accent hover:text-rk-accent">
+                        Editar perfil
+                    </button>
+                </div>
+            </div>
+
+            <!-- Biografía -->
+            <p id="profile-bio" class="mt-4 max-w-xl text-sm text-rk-light/90">
+                Amante de la música, los libros y el buen cine. Compartiendo mis rankings favoritos desde 2024.
+            </p>
+
+            <!-- Estadísticas -->
+            <div class="mt-4 flex gap-6 text-sm">
+                <div class="flex items-baseline gap-1">
+                    <span id="stat-publicaciones" class="font-semibold text-rk-light">10</span>
+                    <span class="text-rk-light/70">Publicaciones</span>
+                </div>
+                <button id="stat-seguidores-btn" class="flex items-baseline gap-1 hover:text-rk-accent">
+                    <span id="stat-seguidores" class="font-semibold text-rk-light">248</span>
+                    <span class="text-rk-light/70">Seguidores</span>
+                </button>
+                <button id="stat-siguiendo-btn" class="flex items-baseline gap-1 hover:text-rk-accent">
+                    <span id="stat-siguiendo" class="font-semibold text-rk-light">132</span>
+                    <span class="text-rk-light/70">Siguiendo</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Pestañas -->
+        <nav class="mx-auto mt-6 w-full max-w-3xl border-b border-rk-light px-4">
+            <div class="flex gap-6">
+                <button
+                    id="tab-btn-publicaciones"
+                    class="border-b-2 border-rk-accent px-1 py-3 text-sm font-medium text-rk-accent"
+                    aria-selected="true"
+                >
+                    Publicaciones
+                </button>
+                <button
+                    id="tab-btn-listas"
+                    class="border-b-2 border-transparent px-1 py-3 text-sm font-medium text-rk-light/70 hover:text-rk-light"
+                    aria-selected="false"
+                >
+                    Listas
+                </button>
+                <button
+                    id="tab-btn-guardado"
+                    class="border-b-2 border-transparent px-1 py-3 text-sm font-medium text-rk-light/70 hover:text-rk-light"
+                    aria-selected="false"
+                >
+                    Guardado
+                </button>
+            </div>
+        </nav>
+
+        <!-- Panel: Publicaciones (contenido original) -->
+        <section id="tab-panel-publicaciones" class="mx-auto w-full max-w-3xl px-4 py-6">
             <!-- El JS llena este contenedor con un cuadrado por publicación -->
             <div id="publicaciones-grid" class="grid gap-3" style="grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));"></div>
         </section>
+
+        <!-- Panel: Listas -->
+        <section id="tab-panel-listas" class="hidden mx-auto w-full max-w-3xl px-4 py-10 text-center text-sm text-rk-light/70">
+            Aún no has creado ninguna lista.
+        </section>
+
+        <!-- Panel: Guardado -->
+        <section id="tab-panel-guardado" class="hidden mx-auto w-full max-w-3xl px-4 py-10 text-center text-sm text-rk-light/70">
+            No tienes publicaciones guardadas.
+        </section>
     </main>
-    
+
 
     <footer class="theme-chrome theme-chrome-text p-4 text-center">
         <p>&copy; 2026 RankKings. Todos los derechos reservados.</p>
